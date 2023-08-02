@@ -1,23 +1,23 @@
 const pattern = /^[*/+-]*$/;
 
-const CheckIsNaN = (Input) => {
-  if (Input == null || isNaN(parseFloat(Input))) {
+const checkIsNaN = (input) => {
+  if (input == null || isNaN(parseFloat(input))) {
     alert("Error");
-    return false;
+    return;
   }
   return true;
 };
 
-const CheckIsAction = (input) => {
+const checkIsAction = (input) => {
   if (input !== null && pattern.test(input)) {
     return true;
   } else {
     alert("Error");
-    return false;
+    return;
   }
 };
 
-const Calculate = (a, b, c) => {
+const calculate = (a, b, c) => {
   switch (c) {
     case "+":
       return a + b;
@@ -33,27 +33,27 @@ const Calculate = (a, b, c) => {
   }
 };
 
-const Input = () => {
+const input = () => {
   const firstNum = prompt("First num: ");
 
-  if (!CheckIsNaN(firstNum)) {
+  if (!checkIsNaN(firstNum)) {
     return;
   } else {
     const secondNum = prompt("Second num: ");
 
-    if (!CheckIsNaN(secondNum)) {
+    if (!checkIsNaN(secondNum)) {
       return;
     } else {
       const operator = prompt("Enter action [*,/,+,-]: ");
 
-      if (CheckIsAction(operator)) {
+      if (checkIsAction(operator)) {
         const result = Calculate(
           parseFloat(firstNum),
           parseFloat(secondNum),
           operator
         );
 
-        alert("Result: " + firstNum + operator + secondNum + " = " + result);
+        alert(`Result: ${firstNum} ${operator} ${secondNum} = ${result}`);
         return result;
       }
     }
