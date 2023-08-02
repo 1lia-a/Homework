@@ -1,4 +1,6 @@
-let CheckIsNaN = (Input) => {
+const pattern = /^[*/+-]*$/;
+
+const CheckIsNaN = (Input) => {
   if (Input == null || isNaN(parseFloat(Input))) {
     alert("Error");
     return false;
@@ -6,8 +8,7 @@ let CheckIsNaN = (Input) => {
   return true;
 };
 
-let CheckIsAction = (input) => {
-  const pattern = /^[*/+-]*$/;
+const CheckIsAction = (input) => {
   if (input !== null && pattern.test(input)) {
     return true;
   } else {
@@ -16,45 +17,43 @@ let CheckIsAction = (input) => {
   }
 };
 
-let Calculate = (a, b, c) => {
-  let result;
+const Calculate = (a, b, c) => {
   switch (c) {
     case "+":
-      result = a + b;
-      break;
+      return a + b;
     case "-":
-      result = a - b;
-      break;
+      return a - b;
     case "*":
-      result = a * b;
-      break;
+      return a * b;
     case "/":
-      result = a / b;
-      break;
+      return a / b;
     default:
       alert("Error");
-      result = 0;
+      return 0;
   }
-  return result;
 };
 
-let Input = () => {
-  let userInput;
-  userInput = prompt("First num: ");
-  if (userInput === null || !CheckIsNaN(userInput)) {
-    return false;
+const Input = () => {
+  const firstNum = prompt("First num: ");
+
+  if (!CheckIsNaN(firstNum)) {
+    return;
   } else {
-    const num1 = parseFloat(userInput);
-    userInput = prompt("Second num: ");
-    if (userInput === null || !CheckIsNaN(userInput)) {
-      return false;
+    const secondNum = prompt("Second num: ");
+
+    if (!CheckIsNaN(secondNum)) {
+      return;
     } else {
-      const num2 = parseFloat(userInput);
-      userInput = prompt("Enter action [*,/,+,-]: ");
-      if (userInput === null || CheckIsAction(userInput)) {
-        const operator = userInput;
-        const result = Calculate(num1, num2, operator);
-        alert("Result: " + num1 + operator + num2 + " = " + result);
+      const operator = prompt("Enter action [*,/,+,-]: ");
+
+      if (CheckIsAction(operator)) {
+        const result = Calculate(
+          parseFloat(firstNum),
+          parseFloat(secondNum),
+          operator
+        );
+
+        alert("Result: " + firstNum + operator + secondNum + " = " + result);
         return result;
       }
     }
