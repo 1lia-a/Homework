@@ -1,71 +1,60 @@
-let A = 0;
-let B = 0;
-let C = 0;
-let userInput;
-
 let CheckIsNaN = (Input) => {
-  if (Input == null || isNaN(Input)) {
+  if (Input == null || isNaN(parseFloat(Input))) {
     alert("Error");
     return false;
   }
   return true;
 };
 
-let CheckIsAction = (input, c) => {
-  let pattern = /^[*/+-]*$/;
-  if (input !== null) {
-    if (pattern.test(input)) {
-      if (userInput.length === 1) {
-        return true;
-      } else {
-        alert("Error");
-        return 0;
-      }
-    } else {
-      alert("Error");
-      return 0;
-    }
+let CheckIsAction = (input) => {
+  const pattern = /^[*/+-]*$/;
+  if (input !== null && pattern.test(input)) {
+    return true;
   } else {
     alert("Error");
-    return 0;
+    return false;
   }
 };
 
 let Calculate = (a, b, c) => {
-  if (c == "+") {
-    const Sum = a + b;
-    return Sum;
-  } else if (c == "-") {
-    const Min = a - b;
-    return Min;
-  } else if (c == "*") {
-    const Mult = a * b;
-    return Mult;
-  } else if (c == "/") {
-    const Div = a / b;
-    return Div;
-  } else {
-    alert("Error");
-    return 0;
+  let result;
+  switch (c) {
+    case "+":
+      result = a + b;
+      break;
+    case "-":
+      result = a - b;
+      break;
+    case "*":
+      result = a * b;
+      break;
+    case "/":
+      result = a / b;
+      break;
+    default:
+      alert("Error");
+      result = 0;
   }
+  return result;
 };
 
 let Input = () => {
+  let userInput;
   userInput = prompt("First num: ");
-  if (CheckIsNaN(userInput) == false) {
-    return 0;
+  if (userInput === null || !CheckIsNaN(userInput)) {
+    return false;
   } else {
-    A = parseFloat(userInput);
+    const num1 = parseFloat(userInput);
     userInput = prompt("Second num: ");
-    if (CheckIsNaN(userInput) == false) {
-      return 0;
+    if (userInput === null || !CheckIsNaN(userInput)) {
+      return false;
     } else {
-      B = parseFloat(userInput);
+      const num2 = parseFloat(userInput);
       userInput = prompt("Enter action [*,/,+,-]: ");
-      if (CheckIsAction(userInput, C) == true) {
-        C = userInput;
-        let result = Calculate(A, B, C);
-        alert("Result: " + A + C + B + " = " + result);
+      if (userInput === null || CheckIsAction(userInput)) {
+        const operator = userInput;
+        const result = Calculate(num1, num2, operator);
+        alert("Result: " + num1 + operator + num2 + " = " + result);
         return result;
       }
     }
