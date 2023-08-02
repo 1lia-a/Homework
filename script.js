@@ -55,12 +55,12 @@ let Input = () => {
   if (CheckIsNaN(userInput) == false) {
     return 0;
   } else {
-    A = userInput;
+    A = parseFloat(userInput);
     userInput = prompt("Second num: ");
     if (CheckIsNaN(userInput) == false) {
       return 0;
     } else {
-      B = userInput;
+      B = parseFloat(userInput);
       userInput = prompt("Enter action [*,/,+,-]: ");
       if (CheckIsAction(userInput, C) == true) {
         C = userInput;
