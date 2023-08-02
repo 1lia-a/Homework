@@ -47,7 +47,7 @@ const input = () => {
       const operator = prompt("Enter action [*,/,+,-]: ");
 
       if (checkIsAction(operator)) {
-        const result = Calculate(
+        const result = calculate(
           parseFloat(firstNum),
           parseFloat(secondNum),
           operator
