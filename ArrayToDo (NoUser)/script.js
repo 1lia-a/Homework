@@ -20,7 +20,7 @@ console.log("Available commands: ");
 console.log("1. addToDo('title', 'description')");
 console.log("2. deleteToDo(id) ");
 console.log("3. editToDo(id, 'title', 'description')");
-console.log("4. Array()");
+console.log("4. array()");
 console.log(toDoArray);
 
 const addToDo = (title, description) => {

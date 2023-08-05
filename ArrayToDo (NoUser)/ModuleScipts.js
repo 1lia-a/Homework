@@ -8,7 +8,7 @@ const getLastID = () => {
   return lastID;
 };
 
-const Array = () => {
+const array = () => {
   const Array = JSON.stringify(toDoArray);
   console.log(toDoArray);
 };
